@@ -9,23 +9,33 @@ import ec.edu.utpl.sic.arqapl.metrics.Similaritable;
 import java.util.ArrayList;
 
 public class TweetSimilarity {
-    private Similaritable algorithm;
-    private ArrayList<Similaritable> Algorith;
+   // private Similaritable algorithm;
+    private ArrayList<Similaritable> Algoritmo = new ArrayList<Similaritable>();
 
     public TweetSimilarity() {
-        Algorith.add(new Jaccard());
-        Algorith.add(new Cosine());
-        Algorith.add(new JardWinkleDistance());
+        //algorithm = new Cosine();
+        this.Algoritmo.add(new JardWinkleDistance());
+        this.Algoritmo.add(new Jaccard());
+        this.Algoritmo.add(new Cosine());
     }
 
-
-    public TweetSimilarity(Similaritable algorithm) {
-
-        this.algorithm = algorithm;
-    }
-
-    public double similarity(String tweet1, String tweet2) {
-
-        return algorithm.similarity(tweet1, tweet2);
+    public double similarity(String tweet1, String tweet2, String tipoAlgoritmo) {
+        double valor = 0;
+        for(Similaritable algorith : Algoritmo){
+            if(tipoAlgoritmo.equals("J")){
+                if(algorith instanceof Jaccard){
+                    valor = algorith.similarity(tweet1, tweet2);
+                }
+            }else if(tipoAlgoritmo.equals("C")){
+                if(algorith instanceof Cosine){
+                    valor = algorith.similarity(tweet1, tweet2);
+                }
+            }else if(tipoAlgoritmo.equals("W")){
+                if(algorith instanceof JardWinkleDistance){
+                    valor = algorith.similarity(tweet1, tweet2);
+                }
+            }
+        }
+        return valor;
     }
 }
