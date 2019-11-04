@@ -15,8 +15,8 @@ public class TweetSimilarityTest {
     @Test
     public void similar() {
         var tweet1 = "Hola mundo";
-        var tweet2 = "Hola";
-        String tipoAlgoritmo = "C";
+        var tweet2 = "Hola mundo";
+        String tipoAlgoritmo = "W";
         TweetSimilarity ts = new TweetSimilarity();
             assertEquals(1.0,
                 ts.similarity(tweet1, tweet2,tipoAlgoritmo), 0.1);
